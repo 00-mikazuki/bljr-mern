@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+  <div class="table-container">
+    <h2 class="todo-title">Add Todo</h2>
+
+    <div>
+      <a href="/" class="btn">Back</a>
+
+      <form action="/add" method="post">
+        <div class="new-todo">
+          <div class="form-group">
+            <label for="title" class="text-light">Title</label>
+            <input type="text" id="title" name="title" placeholder="Type todo here" required>
+          </div>
+          <div class="form-group">
+            <label for="description" class="text-light">Description</label>
+            <input type="text" id="description" name="description" placeholder="Type description here" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<%- include('partials/footer') %>
