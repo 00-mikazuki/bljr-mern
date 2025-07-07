@@ -1,0 +1,33 @@
+{
+  "name": "blog-rest-api",
+  "version": "1.0.0",
+  "description": "Restful blog api",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "blog",
+    "api",
+    "restful",
+    "rest",
+    "api"
+  ],
+  "author": "Juan Dio",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.804.0",
+    "@aws-sdk/s3-request-presigner": "^3.804.0",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.2",
+    "nodemailer": "^6.10.1",
+    "nodemon": "^3.1.9"
+  }
+}
