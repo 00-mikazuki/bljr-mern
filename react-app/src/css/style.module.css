@@ -1,0 +1,19 @@
+.text {
+  color: blue;
+  font-size: 20px;
+}
+
+.container {
+  border: 5px solid black;
+  background-color: lightgray;
+}
+
+.text1 {
+  color: red;
+  font-size: 20px;
+}
+
+.container1 {
+  border: 5px solid green;
+  background-color: navy;
+}
