@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -17,7 +18,9 @@ const app = express();
 connectMongodb();
 
 // third-party middleware
-app.use(bodyParser.json({ limit: '500mb' }));
+app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] })); // enable CORS for specific origins
+// app.use(cors({ origin: '*' })); // enable CORS for all origins
+app.use(express.json({ limit: '500mb' }));
 app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
 app.use(morgan('dev')); // log requests to console
 

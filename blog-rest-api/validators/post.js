@@ -4,13 +4,11 @@ const mongoose = require('mongoose');
 const createPostValidator = [
   check('title')
     .notEmpty()
-    .withMessage('Title is required')
-    .isLength({ min: 3 })
-    .withMessage('Title must be at least 3 characters long'),
+    .withMessage('Title is required'),
+    // .isLength({ min: 3 })
+    // .withMessage('Title must be at least 3 characters long'),
   check('description')
-    .optional()
-    .isLength({ min: 10 })
-    .withMessage('Description must be at least 10 characters long'),
+    .optional(),
   check('category')
     .notEmpty()
     .withMessage('Category is required')

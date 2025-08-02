@@ -6,27 +6,32 @@ const { File } = require('../models');
 
 // function to upload a file to S3 and save its metadata in the database
 const uploadFile = async (req, res, next) => {
-  try {
-    const { file } = req;
+  setTimeout(async () => {
+    try {
+      const { file } = req;
 
-    const newFile = new File({
-      key: file.filename,
-      size: file.size,
-      mimetype: file.mimetype,
-      createdBy: req.user._id,
-    });
+      const newFile = new File({
+        key: file.filename,
+        size: file.size,
+        mimetype: file.mimetype,
+        createdBy: req.user._id,
+      });
 
-    await newFile.save();
+      await newFile.save();
 
-    res.status(201).json({
-      code: 201,
-      status: true,
-      message: 'File uploaded successfully',
-      file: req.file,
-    });
-  } catch (error) {
-    next(error);
-  }
+      res.status(201).json({
+        code: 201,
+        status: true,
+        message: 'File uploaded successfully',
+        data: {
+          key: newFile.key,
+          _id: newFile._id,
+        }
+      });
+    } catch (error) {
+      next(error);
+    }
+  }, 5000);
 }
 
 // function to get a signed URL for a file stored in S3
@@ -52,6 +57,35 @@ const uploadFile = async (req, res, next) => {
 //     next(error);
 //   }
 // }
+
+// function to get a file by its key
+const getFile = async (req, res, next) => {
+  try {
+    const { key } = req.query;
+    if (!key) {
+      res.code = 400;
+      throw new Error('File key is required');
+    }
+
+    const file = await File.findOne({ key });
+    if (!file) {
+      res.code = 404;
+      throw new Error('File not found');
+    }
+
+    // Return file from local storage
+    const filePath = path.join(__dirname, '../uploads', file.key);
+
+    if (fs.existsSync(filePath)) {
+      res.download(filePath, file.key);
+    } else {
+      res.code = 404;
+      throw new Error('File not found in storage');
+    }
+  } catch (error) {
+    next(error);
+  }
+}
 
 // function to delete a file from storage and remove its metadata from the database
 const deleteFile = async (req, res, next) => {

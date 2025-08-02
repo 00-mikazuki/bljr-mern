@@ -6,8 +6,8 @@ const { isAuth, isAdmin } = require('../middlewares');
 
 router.get('/', isAuth, categoryController.getCategories);
 router.get('/:id', isAuth, categoryValidator.idValidator, validate, categoryController.getCategory);
-router.post('/', isAuth, isAdmin, categoryValidator.addCategory, validate, categoryController.addCategory);
-router.put('/:id', isAuth, isAdmin, categoryValidator.idValidator, categoryValidator.updateCategory, validate, categoryController.updateCategory);
-router.delete('/:id', isAuth, isAdmin, categoryValidator.idValidator, validate, categoryController.deleteCategory);
+router.post('/', isAuth, categoryValidator.addCategory, validate, categoryController.addCategory);
+router.put('/:id', isAuth, categoryValidator.idValidator, categoryValidator.updateCategory, validate, categoryController.updateCategory);
+router.delete('/:id', isAuth, categoryValidator.idValidator, validate, categoryController.deleteCategory);
 
 module.exports = router;

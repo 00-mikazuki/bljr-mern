@@ -24,7 +24,7 @@ const getCategories = async (req, res, next) => {
     const limit = pageSize; // set the limit for the number of documents to return
 
     const categories = await Category.find(query)
-      .select('-__v -createdAt -updatedAt') // exclude __v, createdAt, and updatedAt fields
+      .select('-__v') // exclude __v field
       .skip(skip) // skip the documents
       .limit(limit) // limit the number of documents returned
       .sort({

@@ -69,6 +69,8 @@ const signin = async (req, res, next) => {
       throw new Error('Invalid credentials');
     }
 
+    user.password = undefined; // Remove password from user object
+
     // Generate token
     const token = generateToken(user);
 
@@ -77,7 +79,8 @@ const signin = async (req, res, next) => {
       status: true,
       message: 'User signed in successfully',
       data: {
-        token
+        token,
+        user
       }
     });
   } catch (error) {
