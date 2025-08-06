@@ -67,8 +67,8 @@ const getPost = async (req, res, next) => {
       .populate('file')
       .populate('category')
       .populate('updatedBy', '-password -verificationCode -forgotPasswordCode') // exclude password field from user data
-      .select('-__v -createdAt -updatedAt'); // exclude __v, createdAt, and updatedAt fields
-    
+      .select('-__v'); // exclude __v field
+
     if (!post) {
       res.code = 404;
       throw new Error('Post not found');

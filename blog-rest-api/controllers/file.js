@@ -58,6 +58,30 @@ const uploadFile = async (req, res, next) => {
 //   }
 // }
 
+// function to get a signed URL for a file stored in local storage
+const getSignedUrl = async (req, res, next) => {
+  try {
+    const { key } = req.query;
+    const url = `${req.protocol}://${req.get('host')}/uploads/${key}`; // Assuming files are stored in the uploads directory
+
+    if (!url) {
+      res.code = 404;
+      throw new Error('File not found');
+    }
+
+    res.status(200).json({
+      code: 200,
+      status: true,
+      message: 'Signed URL generated successfully',
+      data: {
+        url,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 // function to get a file by its key
 const getFile = async (req, res, next) => {
   try {
@@ -118,5 +142,6 @@ const deleteFile = async (req, res, next) => {
 
 module.exports = {
   uploadFile,
+  getSignedUrl,
   deleteFile,
 };

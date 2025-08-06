@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -29,6 +30,10 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/file', fileRoute);
 app.use('/api/v1/post', postRoute);
+
+// static files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // serve static files from uploads directory
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // not found route
 app.use('*endpoint', notFound); // catch all undefined routes
