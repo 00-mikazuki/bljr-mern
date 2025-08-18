@@ -16,6 +16,8 @@ import PostList from "./pages/post/PostList";
 import DetailPost from "./pages/post/DetailPost";
 import NewPost from "./pages/post/NewPost";
 import UpdatePost from "./pages/post/UpdatePost";
+import VerifyUser from "./pages/VerifyUser";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   return (
@@ -32,10 +34,12 @@ function App() {
           <Route path="/posts/:id/update" element={<UpdatePost />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/setting" element={<Setting />} />
+          <Route path="/verify" element={<VerifyUser />} />
         </Route>
         <Route element={<PublicLayout />}>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
       </Routes>
       <ToastContainer />

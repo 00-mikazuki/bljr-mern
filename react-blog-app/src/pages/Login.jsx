@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../utils/axiosInstance";
 import loginValidator from "../validators/loginValidator";
@@ -100,9 +100,9 @@ const Login = () => {
           {formError.password && <span className="error">{formError.password}</span>}
         </div>
 
-        <a className="forgot-password" to="/forgot-password">
+        <Link className="forgot-password" to="/forgot-password">
           Forgot Password
-        </a>
+        </Link>
 
         <div className="form-group">
           <input className="button" type="submit" disabled={loading} value={loading ? "Logging in..." : "Login"} />
